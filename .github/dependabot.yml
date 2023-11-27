@@ -1,0 +1,21 @@
+---
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+     interval: "weekly"
+    reviewers:
+      - "brucellino"
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "brucellino"
+  - package-ecosystem: "pip"
+    directory: ".github/workflows"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "brucellino"
