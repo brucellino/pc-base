@@ -1,0 +1,9 @@
+- name: Add repositories
+  ansible.builtin.apt_repository:
+    repo: "{{ item.repo }}"
+    state: present
+    mode: "0644"
+    update_cache: true
+    validate_certs: true
+    filename: "{{ item.filename }}"
+  loop: "{{ apt_repos[ansible_distribution_release] }}"
