@@ -1,9 +1,14 @@
 ---
 # defaults file for ansible-role-template
 # List of packages which I know will be available in the distro repos
+hah_arch:
+  x86_64: amd64
+  aarch64: arm64
+  armv6l: arm
 base_packages:
   focal: []
   bionic:
+    - apt-transport-https
     - lsb-base
     - curl
     - gzip
@@ -11,6 +16,7 @@ base_packages:
     - dbus
     - dconf-cli
   jammy:
+    - apt-transport-https
     - lsb-base
     - curl
     - gzip
@@ -21,3 +27,12 @@ apt_repos:
   bionic: []
   focal: []
   jammy: []
+
+
+## CVMFS variables
+cvmfs_release_pkg_url: https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest_all.deb
+
+## Helm
+ensure_helm: true
+helm_signing_key_url: https://baltocdn.com/helm/signing.asc
+helm_repo_string: "deb [arch={{ hah_arch[ansible_architecture] }} signed-by=/etc/apt/trusted.gpg.d/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main"

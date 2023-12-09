@@ -1,0 +1,19 @@
+- name: Ensure Helm GPG key
+  ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/helm.gpg
+    url: "{{ helm_signing_key_url }}"
+    state: present
+
+- name: Ensure repo is present
+  ansible.builtin.apt_repository:
+    repo: "{{ helm_repo_string }}"
+    state: present
+    mode: "0644"
+    update_cache: true
+    validate_certs: true
+    filename: helm
+
+- name: Ensure helm
+  ansible.builtin.package:
+    name: helm
+    state: present

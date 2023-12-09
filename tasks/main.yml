@@ -5,3 +5,7 @@
 
 - name: Repos
   ansible.builtin.include_tasks: repos.yml
+
+- name: Helm
+  ansible.builtin.include_tasks: helm.yml
+  when: ensure_helm | bool
