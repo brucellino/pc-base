@@ -168,41 +168,52 @@ base_packages:
     - zsh
   jammy:
     - apt-transport-https
+    - apt-utils
     - asciinema
     - aspell
     - aspell-en
     - baobab
+    - bat
     - bats
     - bind9-dnsutils
     - bind9-host
     - binutils
     - binutils-common
     - bzip2
+    - ca-certificates
     - cargo
-    - cmake
     - catimg
+    - cmake
     - coffeescript
+    - coreutils
     - cowsay
     - cpio
-    - coreutils
+    - curl
     - dash
+    - dbus
+    - dconf-cli
     - default-jre
     - default-jre-headless
     - deja-dup
     - dictionaries-common
     - duplicity
-    - facter
     - evince
+    - exa
+    - facter
     - flameshot
-    - fonts-ibm-plex
     - fonts-firacode
+    - fonts-ibm-plex
+    - fzf
     - gcc
     - gcc-aarch64-linux-gnu
     - gfortran
     - gfortran-aarch64-linux-gnu
+    - gnupg
+    - golang-go
     - gradle
     - graphviz
     - groovy
+    - gzip
     - httpie
     - hugo
     - imagemagick
@@ -211,22 +222,12 @@ base_packages:
     - junit
     - kazam
     - kino
+    - lsb-base
     - maven
     - meld
     - neofetch
-    - ruby-asciidoctor-pdf
     - openmpi-bin
     - pandoc
-    - apt-utils
-    - ca-certificates
-    - gnupg
-    - lsb-base
-    - curl
-    - gzip
-    - python3-psutil
-    - dbus
-    - dconf-cli
-    - golang-go
     - python3
     - python3-apt
     - python3-asn1crypto
@@ -274,6 +275,7 @@ base_packages:
     - python3-pkg-resources
     - python3-problem-report
     - python3-protobuf
+    - python3-psutil
     - python3-ptyprocess
     - python3-pyatspi
     - python3-pymacaroons
@@ -294,6 +296,8 @@ base_packages:
     - python3-update-manager
     - python3-urllib3
     - python3-venv
+    - python3-venv
+    - python3-virtualenv
     - python3-virtualenv
     - python3-wadllib
     - python3-wxgtk4.0
@@ -301,22 +305,21 @@ base_packages:
     - python3-xkit
     - python3-yaml
     - python3-zope.interface
-    - python3-venv
-    - python3-virtualenv
     - python3.10
-    - qemu-kvm
-    - qemu-utils
     - qemu-efi-aarch64
-    - qemu-system-misc
     - qemu-efi-arm
-    - qemu-user
-    - qemu-user-static
-    - qemu-user-binfmt
+    - qemu-kvm
     - qemu-system-arm
+    - qemu-system-misc
+    - qemu-user
+    - qemu-user-binfmt
+    - qemu-user-static
+    - qemu-utils
     - readline-common
     - redis
     - redis-tools
     - ruby
+    - ruby-asciidoctor-pdf
     - ruby-bundler
     - ruby-dev
     - rubygems-integration
@@ -335,6 +338,18 @@ apt_repos:
   bionic: []
   focal: []
   jammy: []
+
+## Modern nix
+modern_nix_tools:
+  - mcfly
+  - choose
+  - sd
+  - cheat
+  - bottom
+  - hyperfine
+  - cargo
+  - dust
+  - duf
 
 
 ## CVMFS variables
@@ -410,3 +425,13 @@ charm_sh_packages:
 
 
 ## Julia
+
+
+## Cheat and cheatsheets
+
+
+## Glances https://github.com/nicolargo/glances
+
+## https://github.com/aksakalli/gtop requires node
+
+## gping https://github.com/orf/gping

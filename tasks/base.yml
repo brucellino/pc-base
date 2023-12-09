@@ -1,4 +1,4 @@
-- name: Add user becker
+- name: Base | Add user becker
   ansible.builtin.user:
     name: becker
     groups: sudo,audio,users,netdev,adm,video
@@ -15,14 +15,14 @@
     ssh_key_type: rsa
     append: true
 
-- name: Add ssh keys
+- name: Base | Add ssh keys
   ansible.posix.authorized_key:
     user: becker
     key: https://github.com/brucellino.keys
     comment: Added by Ansible with <3 from GitHub
     state: present
 
-- name: Give passwordless sudo to becker
+- name: Base | Give passwordless sudo to becker
   ansible.builtin.copy:
     owner: root
     dest: /etc/sudoers.d/020_becker-nopasswd
@@ -30,8 +30,14 @@
     group: root
     mode: "0440"
 
-- name: Ensure base packages
+# Base packages installs cargo required for next steps
+- name: Base | Ensure base packages
   ansible.builtin.package:
     name: "{{ base_packages[ansible_distribution_release] }}"
     state: present
-  # loop: "{{ base_packages[ansible_distribution_release] }}"
+
+- name: Base | Ensure modern nix tools
+  community.general.cargo:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ modern_nix_tools }}"
