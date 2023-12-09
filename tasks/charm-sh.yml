@@ -1,0 +1,24 @@
+- name: Charm.sh | GPG key
+  ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/charm.sh.gpg
+    url: "{{ charm_sh_gpg_key_url }}"
+    state: present
+    validate_certs: true
+
+- name: Charm.sh | Repo
+  ansible.builtin.apt_repository:
+    repo: 'deb [signed-by=/etc/apt/trusted.gpg.d/charm.sh.gpg] https://repo.charm.sh/apt/ * *'
+    state: present
+    mode: "0644"
+    update_cache: true
+    validate_certs: true
+    filename: charm.sh
+
+- name: Charm.sh | Packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+    use: auto
+  loop: "{{ charm_packages }}"
+
+# - name: Charm.sh | Add pop

@@ -17,3 +17,7 @@
 - name: Slack
   ansible.builtin.include_tasks: slack.yml
   when: (ensure_slack | bool) and (ansible_architecture == "x86_64")
+
+- name: Charm.sh
+  ansible.builtin.include_tasks: charm-sh.yml
+  when: ensure_charm_sh | bool
