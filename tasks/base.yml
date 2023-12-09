@@ -32,6 +32,6 @@
 
 - name: Ensure base packages
   ansible.builtin.package:
-    name: "{{ item }}"
+    name: "{{ base_packages[ansible_distribution_release] }}"
     state: present
-  loop: "{{ base_packages[ansible_distribution_release] }}"
+  # loop: "{{ base_packages[ansible_distribution_release] }}"

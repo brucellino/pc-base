@@ -19,6 +19,6 @@
     name: "{{ item }}"
     state: present
     use: auto
-  loop: "{{ charm_packages }}"
+  loop: "{{ charm_sh_packages }}"
 
 # - name: Charm.sh | Add pop
