@@ -9,3 +9,7 @@
 - name: Helm
   ansible.builtin.include_tasks: helm.yml
   when: ensure_helm | bool
+
+- name: Mono
+  ansible.builtin.include_tasks: mono.yml
+  when: (ensure_mono | bool) and (ansible_distribution_release != "jammy")

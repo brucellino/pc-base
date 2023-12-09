@@ -1,0 +1,22 @@
+- name: Mono | Ensure repo GPG key
+  ansible.builtin.apt_key:
+    id: "{{ mono_key_id }}"
+    keyring: /etc/apt/trusted.gpg.d/mono.gpg
+    keyserver: hkp://keyserver.ubuntu.com:80
+    state: present
+    validate_certs: true
+
+- name: Mono | Ensure repo
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/mono.gpg] https://download.mono-project.com/repo/ubuntu stable-{{ ansible_distribution_release }} main"
+    state: present
+    mode: "0644"
+    update_cache: true
+    validate_certs: true
+    filename: mono
+
+- name: Mono | Ensure package
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ mono_packages }}"

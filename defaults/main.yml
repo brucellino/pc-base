@@ -9,6 +9,8 @@ base_packages:
   focal: []
   bionic:
     - apt-transport-https
+    - ca-certificates
+    - gnupg
     - lsb-base
     - curl
     - gzip
@@ -17,6 +19,8 @@ base_packages:
     - dconf-cli
   jammy:
     - apt-transport-https
+    - ca-certificates
+    - gnupg
     - lsb-base
     - curl
     - gzip
@@ -33,6 +37,20 @@ apt_repos:
 cvmfs_release_pkg_url: https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest_all.deb
 
 ## Helm
+### See https://helm.sh/docs/intro/install/
 ensure_helm: true
 helm_signing_key_url: https://baltocdn.com/helm/signing.asc
 helm_repo_string: "deb [arch={{ hah_arch[ansible_architecture] }} signed-by=/etc/apt/trusted.gpg.d/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main"
+helm_packages:
+  - helm
+
+## Mono
+### See https://www.mono-project.com/download/stable/#download-lin
+# Not available for jammy yet
+ensure_mono: true
+mono_key_id: 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+mono_packages:
+  - mono-dev
+  - mono-complete
+  - ca-certificates-mono
+  - referenceassemblies-pcl

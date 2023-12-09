@@ -15,5 +15,6 @@
 
 - name: Ensure helm
   ansible.builtin.package:
-    name: helm
+    name: "{{ item }}"
     state: present
+  loop: "{{ helm_packages }}"
