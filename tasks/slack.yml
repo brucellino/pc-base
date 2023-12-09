@@ -1,0 +1,6 @@
+- name: Slack | Ensure package
+  ansible.builtin.apt:
+    deb: "{{ slack_pkg_url }}"
+    state: present
+    update_cache: true
+    install_recommends: true

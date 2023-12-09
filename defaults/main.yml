@@ -54,3 +54,10 @@ mono_packages:
   - mono-complete
   - ca-certificates-mono
   - referenceassemblies-pcl
+
+## Slack
+### See https://slack.com/intl/en-gb/downloads/linux
+ensure_slack: true
+slack_version: 4.35.131
+# Only available for x86 architectures
+slack_pkg_url: "https://downloads.slack-edge.com/releases/linux/{{ slack_version }}/prod/x64/slack-desktop-{{ slack_version }}-amd64.deb"

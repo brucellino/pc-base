@@ -13,3 +13,7 @@
 - name: Mono
   ansible.builtin.include_tasks: mono.yml
   when: (ensure_mono | bool) and (ansible_distribution_release != "jammy")
+
+- name: Slack
+  ansible.builtin.include_tasks: slack.yml
+  when: (ensure_slack | bool) and (ansible_architecture == "x86_64")
