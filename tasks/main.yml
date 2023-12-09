@@ -1,2 +1,7 @@
 ---
 # tasks file for ansible-role-template
+- name: Base
+  ansible.builtin.include_tasks: base.yml
+
+- name: Repos
+  ansible.builtin.include_tasks: repos.yml

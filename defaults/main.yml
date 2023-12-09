@@ -1,2 +1,23 @@
 ---
 # defaults file for ansible-role-template
+# List of packages which I know will be available in the distro repos
+base_packages:
+  focal: []
+  bionic:
+    - lsb-base
+    - curl
+    - gzip
+    - python3-psutil
+    - dbus
+    - dconf-cli
+  jammy:
+    - lsb-base
+    - curl
+    - gzip
+    - python3-psutil
+    - dbus
+    - dconf-cli
+apt_repos:
+  bionic: []
+  focal: []
+  jammy: []

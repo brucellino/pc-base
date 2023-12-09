@@ -1,0 +1,37 @@
+- name: Add user becker
+  ansible.builtin.user:
+    name: becker
+    groups: sudo,audio,users,netdev,adm,video
+    comment: The boss
+    ssh_key_bits: 2048
+    update_password: always  # pragma: allowlist secret
+    non_unique: true
+    force: false
+    create_home: true
+    generate_ssh_key: true
+    ssh_key_comment: ansible-generated on
+    shell: /bin/bash
+    state: present
+    ssh_key_type: rsa
+    append: true
+
+- name: Add ssh keys
+  ansible.posix.authorized_key:
+    user: becker
+    key: https://github.com/brucellino.keys
+    comment: Added by Ansible with <3 from GitHub
+    state: present
+
+- name: Give passwordless sudo to becker
+  ansible.builtin.copy:
+    owner: root
+    dest: /etc/sudoers.d/020_becker-nopasswd
+    content: "becker ALL=(ALL) NOPASSWD: ALL"  # pragma: allowlist secret
+    group: root
+    mode: "0440"
+
+- name: Ensure base packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ base_packages[ansible_distribution_release] }}"
