@@ -21,3 +21,7 @@
 - name: Charm.sh
   ansible.builtin.include_tasks: charm-sh.yml
   when: ensure_charm_sh | bool
+
+- name: M$
+  ansible.builtin.include_tasks: microsoft.yml
+  when: ensure_icky | bool

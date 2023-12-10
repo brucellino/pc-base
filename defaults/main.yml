@@ -325,6 +325,7 @@ base_packages:
     - rubygems-integration
     - rustc
     - s3cmd
+    - software-properties-common
     - shellcheck
     - simple-scan
     - sl
@@ -337,18 +338,48 @@ base_packages:
 apt_repos:
   bionic: []
   focal: []
-  jammy: []
+  jammy:
+    - repo: deb [trusted=yes] https://apt.fury.io/notion-repackaged/ /
+      filename: notion
+    - repo: deb http://repository.spotify.com stable non-free
+      filename: spotify
+    - repo: "deb [signed-by=/etc/apt/trusted.gpg.d/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared {{ ansible_distribution_release }} main"
+      filename: cloudflare-main
 
-## Modern nix
+ppas:
+  - variety/stable
+
+# These require the repos above in apt_repos
+extra_packages:
+  - notion-app-enhanced
+  - notion-app
+  - spotify-client
+  - cloudflared
+  - variety
+
+## M$
+ensure_icky: true
+icky_packages: []
+
+
+standalone_packages:
+  # https://github.com/jgraph/drawio-desktop/releases/download/v22.1.2/drawio-amd64-22.1.2.deb
+  - package_name: drawio-amd64
+    version: 22.1.2
+    repo: jgraph/drawio-desktop
+
+## Modern nix tools installed with cargo
 modern_nix_tools:
-  - mcfly
-  - choose
-  - sd
-  - bottom
-  - hyperfine
-  - du-dust
-  - duf
-
+  crates:
+    - mcfly
+    - choose
+    - sd
+    - bottom
+    - hyperfine
+    - du-dust
+    - duf
+  gopkgs:
+    - github.com/charmbracelet/pop@latest
 
 ## CVMFS variables
 cvmfs_release_pkg_url: https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest_all.deb
@@ -394,17 +425,11 @@ charm_sh_packages:
 
 ## Draw.io
 
-
 ## Hashicorp
 
 
 ## Dropbox
-
-## Hyper
-
-
-## Notion
-
+# https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2023.09.06_amd64.deb
 
 ## Powershell
 

@@ -1,4 +1,26 @@
-- name: Add repositories
+- name: Repos | Github Releases
+  ansible.builtin.apt:
+    state: present
+    update_cache: true
+    install_recommends: true
+    deb: "https://github.com/{{ item.repo }}/releases/download/v{{ item.version }}/{{ item.package_name }}-{{ item.version }}.deb"
+  loop: "{{ standalone_packages }}"
+
+- name: Repos | Cloudflare GPG
+  ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/cloudflare-main.gpg
+    url: https://pkg.cloudflare.com/cloudflare-main.gpg
+    state: present
+    validate_certs: true
+
+- name: Repos | Spotify GPG Key
+  ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/spotify.gpg
+    url: https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg
+    state: present
+    validate_certs: true
+
+- name: Repos | Add repositories
   ansible.builtin.apt_repository:
     repo: "{{ item.repo }}"
     state: present
@@ -7,3 +29,18 @@
     validate_certs: true
     filename: "{{ item.filename }}"
   loop: "{{ apt_repos[ansible_distribution_release] }}"
+
+- name: Repos | PPAs
+  ansible.builtin.apt_repository:
+    repo: ppa:variety/stable
+    state: present
+    mode: "0644"
+    update_cache: true
+    validate_certs: true
+    filename: variety
+
+- name: Repos | Install extra packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ extra_packages }}"

@@ -1,0 +1,27 @@
+- name: M$ | GPG Key
+  ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/icky.gpg
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+    validate_certs: true
+- name: M$ | Add Prod repo
+  ansible.builtin.apt:
+    state: present
+    update_cache: true
+    install_recommends: true
+    deb: "https://packages.microsoft.com/config/ubuntu/{{ ansible_lsb.release }}/packages-microsoft-prod.deb"
+
+- name: M$ | Add Icky packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ icky_packages }}"
+
+- name: M$ | Add VS Code repo
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/code stable main"
+    state: present
+    mode: "0644"
+    update_cache: true
+    validate_certs: true
+    filename: vscode

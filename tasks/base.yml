@@ -36,10 +36,19 @@
     name: "{{ base_packages[ansible_distribution_release] }}"
     state: present
 
-- name: Base | Ensure modern nix tools
+- name: Base | Ensure modern nix tools (crates)
   become: true
   become_user: becker
   community.general.cargo:
     name: "{{ item }}"
     state: present
-  loop: "{{ modern_nix_tools }}"
+  loop: "{{ modern_nix_tools.crates }}"
+
+- name: Base | Ensure modern nix tools (gopkgs)
+  become: true
+  become_user: becker
+  ansible.builtin.shell:
+    cmd: "go install {{ item }}"
+  loop: "{{ modern_nix_tools.gopkgs }}"
+  tags:
+    - skip_ansible_lint

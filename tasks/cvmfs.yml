@@ -1,0 +1,9 @@
+- name: Ensure CVMFS repo
+  ansible.builtin.package:
+    name: "{{ cvmfs_release_pkg_url }}"
+    state: present
+
+- name: Ensure CVMFS client
+  ansible.builtin.package:
+    name: cvmfs
+    state: present
