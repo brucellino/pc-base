@@ -37,6 +37,8 @@
     state: present
 
 - name: Base | Ensure modern nix tools
+  become: true
+  become_user: becker
   community.general.cargo:
     name: "{{ item }}"
     state: present

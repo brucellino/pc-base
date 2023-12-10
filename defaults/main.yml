@@ -344,11 +344,9 @@ modern_nix_tools:
   - mcfly
   - choose
   - sd
-  - cheat
   - bottom
   - hyperfine
-  - cargo
-  - dust
+  - du-dust
   - duf
 
 
