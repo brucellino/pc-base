@@ -487,4 +487,4 @@ nomad_addr: http://bare:4646
 ## gping https://github.com/orf/gping
 
 ## ZSH
-zsh_enable_skman: true
+zsh_enable_sdkman: true
