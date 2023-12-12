@@ -1,0 +1,10 @@
+- name: ZSH | Template zshrc
+  become: true
+  become_user: becker
+  ansible.builtin.template:
+    src: home/becker/.zshrc.j2
+    dest: ${HOME}/.zshrc
+    backup: true
+    mode: "0644"
+    owner: becker
+    group: becker

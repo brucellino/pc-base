@@ -1,0 +1,28 @@
+# Load oh-my-zsh library
+antigen use oh-my-zsh
+
+# Load bundles from the default repo (oh-my-zsh)
+{% for b in zsh_default_bundles %}
+antigen bundle {{ b }}
+{% endfor %}
+
+# Load bundles from external repos
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen bundle aws
+antigen bundle vault
+antigen bundle thefuck
+antigen bundle terraform
+antigen bundle nvm
+antigen bundle fzf
+antigen bundle colorize
+antigen bundle chucknorris
+antigen bundle virtualenv
+antigen bundle timer
+# Select theme
+antigen theme denysdovhan/spaceship-prompt
+
+# Tell Antigen that you're done
+antigen apply

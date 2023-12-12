@@ -25,3 +25,13 @@
 - name: M$
   ansible.builtin.include_tasks: microsoft.yml
   when: ensure_icky | bool
+
+- name: K8s
+  ansible.builtin.include_tasks: k8s.yml
+  when: ensure_k8s | bool
+
+- name: ZSH
+  ansible.builtin.include_tasks: zsh.yml
+
+- name: Langs
+  ansible.builtin.include_tasks: languages.yml

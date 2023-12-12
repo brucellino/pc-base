@@ -1,0 +1,10 @@
+- name: Python | Virtualenv
+  become: true
+  become_user: becker
+  anbsible.builtin.shell:
+    cmd: virtualenv -p 3.10 ${HOME}/ansible
+    creates: /home/becker/ansible/bin/activate
+    chdir: /home/becker
+    executable: /usr/bin/zsh
+  tags:
+    - ansible_no_warning

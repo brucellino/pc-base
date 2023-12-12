@@ -20,6 +20,20 @@
     state: present
     validate_certs: true
 
+- name: Repos | Signal GPG Key
+  ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/signal.gpg
+    url: https://updates.signal.org/desktop/apt/keys.asc
+    state: present
+    validate_certs: true
+
+- name: Repos | Tailscale GPG Key
+  ansible.builtin.apt_key:
+    keyring: /etc/apt/trusted.gpg.d/tailscale.gpg
+    url: "https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}.noarmor.gpg"
+    state: present
+    validate_certs: true
+
 - name: Repos | Add repositories
   ansible.builtin.apt_repository:
     repo: "{{ item.repo }}"
@@ -32,12 +46,13 @@
 
 - name: Repos | PPAs
   ansible.builtin.apt_repository:
-    repo: ppa:variety/stable
+    repo: "ppa:{{ item.repo }}"
     state: present
     mode: "0644"
     update_cache: true
     validate_certs: true
-    filename: variety
+    filename: "{{ item.filename }}"
+  loop: "{{ ppas }}"
 
 - name: Repos | Install extra packages
   ansible.builtin.package:

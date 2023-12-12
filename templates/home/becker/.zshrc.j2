@@ -1,0 +1,94 @@
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:$HOME/go/bin:/usr/local/bin:$PATH
+export VAULT_ADDR="{{ vault_addr }}"
+# Path to your oh-my-zsh installation.
+export ZSH="/home/becker/.oh-my-zsh"
+{% if zsh_enable_sdkman | bool %}
+. ~/.sdkman/bin/sdkman-init.sh
+{% endif %}
+export CONSUL_HTTP_ADDR="{{ consul_http_addr }}"
+export NOMAD_ADDR="{{ nomad_addr }}"
+# Uncomment the following line to change how often to auto-update (in days).
+export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+HIST_STAMPS="yyyy-mm-dd"
+
+export FZF_BASE=/usr/
+
+SHOW_AWS_PROMPT=true
+ZSH_COLORIZE_TOOL=pygments
+ZSH_COLORIZE_STYLE="colorful"
+
+SPACESHIP_TIME_SHOW=true
+SPACESHIP_GOLANG_SHOW=true
+SPACESHIP_DOCKER_SHOW=true
+SPACESHIP_PROMPT_ORDER=(
+  time          # Time stamps section
+  user          # Username section
+  dir           # Current directory section
+  host          # Hostname section
+  git           # Git section (git_branch + git_status)
+  hg            # Mercurial section (hg_branch  + hg_status)
+  package       # Package version
+  node          # Node.js section
+  ruby          # Ruby section
+  elixir        # Elixir section
+  xcode         # Xcode section
+  swift         # Swift section
+  golang        # Go section
+  php           # PHP section
+  rust          # Rust section
+  haskell       # Haskell Stack section
+  julia         # Julia section
+  docker        # Docker section
+  aws           # Amazon Web Services section
+  gcloud        # Google Cloud Platform section
+  venv          # virtualenv section
+  conda         # conda virtualenv section
+  pyenv         # Pyenv section
+  dotnet        # .NET section
+  ember         # Ember.js section
+  kubectl       # Kubectl context section
+  terraform     # Terraform workspace section
+  exec_time     # Execution time
+  line_sep      # Line break
+  battery       # Battery level and status
+  vi_mode       # Vi-mode indicator
+  jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)
+
+source /etc/profile.d/antigen.zsh
+antigen init ~/.antigenrc
+autoload -U +X bashcompinit && bashcompinit
+{#
+Requires Vault first
+complete -o nospace -C /usr/local/bin/vault vault
+complete -o nospace -C /usr/bin/nomad nomad
+complete -o nospace -C /usr/bin/terraform terraform
+#}
+fpath=($fpath "/home/becker/.zfunctions")
+
+# Set Spaceship ZSH as a prompt
+autoload -U promptinit; promptinit
+prompt spaceship
+export PATH=$PATH:/home/becker/.local/bin
+eval $(thefuck --alias)

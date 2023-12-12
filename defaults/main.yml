@@ -192,6 +192,10 @@ base_packages:
     - dash
     - dbus
     - dconf-cli
+    - dconf-gsettings-backend
+    - dconf-service
+    - uuid-runtime
+    - util-linux
     - default-jre
     - default-jre-headless
     - deja-dup
@@ -335,6 +339,7 @@ base_packages:
     - vlc
     - xz-utils
     - zsh
+    - zsh-antigen
 apt_repos:
   bionic: []
   focal: []
@@ -345,9 +350,16 @@ apt_repos:
       filename: spotify
     - repo: "deb [signed-by=/etc/apt/trusted.gpg.d/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared {{ ansible_distribution_release }} main"
       filename: cloudflare-main
+    - repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/signal.gpg] https://updates.signal.org/desktop/apt xenial main
+      filename: signal
+    - repo: "deb [signed-by=/etc/apt/trusted.gpg.d/tailscale.gpg] https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
+      filename: tailscale
 
 ppas:
-  - variety/stable
+  - repo: variety/stable
+    filename: variety
+  - repo: rael-gc/rvm
+    filename: rvm
 
 # These require the repos above in apt_repos
 extra_packages:
@@ -356,6 +368,9 @@ extra_packages:
   - spotify-client
   - cloudflared
   - variety
+  - rvm
+  - signal-desktop
+  - tailscale
 
 ## M$
 ensure_icky: true
@@ -378,11 +393,41 @@ modern_nix_tools:
     - hyperfine
     - du-dust
     - duf
+    - gping
   gopkgs:
     - github.com/charmbracelet/pop@latest
 
+## ZSH and Antigen
+enable_antigen: true
+zsh_default_bundles:
+  - git
+  - command-not-found
+  - docker
+  - aws
+  - vault
+  - thefuck
+  - terraform
+  - nvm
+  - fzf
+  - colorize
+  - chucknorris
+  - virtualenv
+  - timer
+zsh_external_bundles:
+  - zsh-users/zsh-completions
+  - zsh-users/zsh-autosuggestions
+  - zsh-users/zsh-syntax-highlighting
+
 ## CVMFS variables
+enable_cvmfs: false
 cvmfs_release_pkg_url: https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest_all.deb
+
+## K8s variables
+ensure_k8s: true
+k8s_minor_version: 1.28
+install_kubeadm: false # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+install_kind: false #
+install_minikube: false # https://minikube.sigs.k8s.io/docs/start/
 
 ## Helm
 ### See https://helm.sh/docs/intro/install/
@@ -421,40 +466,25 @@ charm_sh_packages:
   - gum
   - skate
   - vhs
-# pop
-
-## Draw.io
-
 ## Hashicorp
+enable_hashi: true
+vault_addr: http://sense:8200
+consul_http_addr: http://pi3:8500
+nomad_addr: http://bare:4646
 
 
 ## Dropbox
 # https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2023.09.06_amd64.deb
 
-## Powershell
-
-
-## RVM
-
-## signal
-
-## Spotify
-
-
-## Tailscale
-
-
-## Antigen
-
-
 ## Julia
-
 
 ## Cheat and cheatsheets
 
-
-## Glances https://github.com/nicolargo/glances
+## Glances https://github.com/nicolargo/glances requires python
 
 ## https://github.com/aksakalli/gtop requires node
 
 ## gping https://github.com/orf/gping
+
+## ZSH
+zsh_enable_skman: true

@@ -1,0 +1,18 @@
+- name: Languages | SDKMan
+  become: true
+  become_user: becker
+  ansible.builtin.shell:
+    cmd: curl -s "https://get.sdkman.io" | bash
+    creates: /home/becker/.sdkman/bin/sdkman-init.sh
+    chdir: /home/becker
+  tags:
+    - ansible_no_warning
+
+- name: Languages | NVM
+  become: true
+  become_user: becker
+  ansible.builtin.shell:
+    cmd: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    creates: /home/becker/.nvm
+  tags:
+    - ansible_no_warning
