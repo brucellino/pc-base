@@ -1,3 +1,4 @@
+---
 - name: ZSH | Template zshrc
   become: true
   become_user: becker
@@ -8,3 +9,20 @@
     mode: "0644"
     owner: becker
     group: becker
+
+- name: ZSH | Get Antigenrc
+  ansible.builtin.get_url:
+    url: https://git.io/antigen
+    dest: /etc/profile.d/antigen.zsh
+    mode: "0644"
+    owner: root
+    group: root
+
+- name: ZSH | Template antigenrc
+  ansible.builtin.template:
+    src: home/becker/.antigenrc.j2
+    dest: /home/becker/.antigenrc
+    mode: "0644"
+    owner: becker
+    group: becker
+  notify: Antigen apply

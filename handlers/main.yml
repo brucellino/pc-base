@@ -1,2 +1,10 @@
 ---
 # handlers file for ansible-role-template
+- name: Antigen apply
+  become: true
+  become_user: becker
+  ansible.builtin.shell:
+    cmd: antigen apply
+    executable: /bin/zsh
+    chdir: /home/becker
+  changed_when: false

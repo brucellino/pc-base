@@ -1,3 +1,5 @@
 exclude_paths:
   - .pre-commit-config.yaml
   - .github/
+warn_list:
+  - yaml[line-length]

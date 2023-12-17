@@ -1,13 +1,40 @@
-- name: Dconf | Solarized Terminal profile
+- name: DConfg | Create terminal profile keys
   community.general.dconf:
-    key: org/gnome/terminal/legacy/profiles
-    value: |
-      background-color='rgb(0,43,54)'
-      font='IBM Plex Mono ExtraLight, Bold 14'
-      foreground-color='rgb(131,148,150)'
-      palette=['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']
-      use-system-font=false
-      use-theme-colors=false
-      visible-name='solarized'
+    key: "/org/gnome/terminal/legacy/profiles:"
+    state: present
+    value:
+      - ":7de98b53-3c0d-4173-b899-f1ff4591a039"
+      - ":ee046b2a-2692-4079-9aab-40293349711d"
   tags:
     - ansible_no_warning
+
+- name: Dconf | Solarized Terminal profile
+  community.general.dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/:7de98b53-3c0d-4173-b899-f1ff4591a039/{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+  loop: "{{ gnome_terminal_profiles[':7de98b53-3c0d-4173-b899-f1ff4591a039']['keys'] }}"
+  tags:
+    - ansible_no_warning
+
+- name: Dconf | Nord Terminal profile
+  community.general.dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/:ee046b2a-2692-4079-9aab-40293349711d/{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+  loop: "{{ gnome_terminal_profiles[':ee046b2a-2692-4079-9aab-40293349711d']['keys'] }}"
+  tags:
+    - ansible_no_warning
+
+
+- name: Dconf | Declare default shell profile
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles/default
+    value: "':ee046b2a-2692-4079-9aab-40293349711d'"
+
+- name: Dconf | declare profile list
+  community.general.dconf:
+    key: /org/gnome/terminal/legacy/profiles/list
+    value:
+      - "':7de98b53-3c0d-4173-b899-f1ff4591a039'"
+      - "':ee046b2a-2692-4079-9aab-40293349711d'"

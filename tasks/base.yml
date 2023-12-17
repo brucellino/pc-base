@@ -10,7 +10,7 @@
     create_home: true
     generate_ssh_key: true
     ssh_key_comment: ansible-generated on
-    shell: /bin/bash
+    shell: /bin/zsh
     state: present
     ssh_key_type: rsa
     append: true

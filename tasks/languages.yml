@@ -2,9 +2,12 @@
   become: true
   become_user: becker
   ansible.builtin.shell:
-    cmd: curl -s "https://get.sdkman.io" | bash
+    cmd: |
+      set -o pipefail
+      curl -s "https://get.sdkman.io" | bash
     creates: /home/becker/.sdkman/bin/sdkman-init.sh
     chdir: /home/becker
+    executable: /bin/bash
   tags:
     - ansible_no_warning
 
@@ -12,7 +15,11 @@
   become: true
   become_user: becker
   ansible.builtin.shell:
-    cmd: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    cmd: |
+      set -o pipefail
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
     creates: /home/becker/.nvm
+    executable: /bin/bash
+    chdir: /home/becker
   tags:
     - ansible_no_warning

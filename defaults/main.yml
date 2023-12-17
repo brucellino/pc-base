@@ -352,7 +352,7 @@ apt_repos:
       filename: cloudflare-main
     - repo: deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/signal.gpg] https://updates.signal.org/desktop/apt xenial main
       filename: signal
-    - repo: "deb [signed-by=/etc/apt/trusted.gpg.d/tailscale.gpg] https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
+    - repo: "deb [signed-by=/etc/apt/trusted.gpg.d/tailscale.gpg] https://pkgs.tailscale.com/stable/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main" # noqa: yaml
       filename: tailscale
 
 ppas:
@@ -488,3 +488,96 @@ nomad_addr: http://bare:4646
 
 ## ZSH
 zsh_enable_sdkman: true
+
+## gnome-terminal-profiles
+gnome_terminal_profiles:
+  ':7de98b53-3c0d-4173-b899-f1ff4591a039':
+    keys:
+      - key: "'background-color'"
+        value: "'rgb(0,43,54)'"
+      - key: "'font'"
+        value: "'IBM Plex Mono ExtraLight, Bold 14'"
+      - key: "'foreground-color'"
+        value: "'rgb(131,148,150)'"
+      - key: "'palette'"
+        value:
+          - 'rgb(7,54,66)'
+          - 'rgb(220,50,47)'
+          - 'rgb(133,153,0)'
+          - 'rgb(181,137,0)'
+          - 'rgb(38,139,210)'
+          - 'rgb(211,54,130)'
+          - 'rgb(42,161,152)'
+          - 'rgb(238,232,213)'
+          - 'rgb(0,43,54)'
+          - 'rgb(203,75,22)'
+          - 'rgb(88,110,117)'
+          - 'rgb(101,123,131)'
+          - 'rgb(131,148,150)'
+          - 'rgb(108,113,196)'
+          - 'rgb(147,161,161)'
+          - 'rgb(253,246,227)'
+      - key: "'use-system-font'"
+        value: false
+      - key: "'use-theme-colors'"
+        value: false
+      - key: "'visible-name'"
+        value: "'solarized'"
+  ':ee046b2a-2692-4079-9aab-40293349711d':
+    keys:
+      - key: "'audible-bell'"
+        value: true
+      - key: "'background-color'"
+        value: "'#2E3440'"
+      - key: "'bold-color'"
+        value: "'#D8DEE9'"
+      - key: "'bold-color-same-as-fg'"
+        value: false
+      - key: "'bold-is-bright'"
+        value: false
+      - key: "'cursor-background-color'"
+        value: "'rgb(216,222,233)'"
+      - key: "'cursor-blink-mode'"
+        value: "'on'"
+      - key: "'cursor-colors-set'"
+        value: true
+      - key: "'cursor-foreground-color'"
+        value: "'rgb(59,66,82)'"
+      - key: "'custom-command'"
+        value: "'zsh'"
+      - key: "'exit-action'"
+        value: "'close'"
+      - key: "'font'"
+        value: "'FiraCode NF weight=453 16'"
+      - key: "'foreground-color'"
+        value: "'#D8DEE9'"
+      - key: "'highlight-background-color'"
+        value: "'rgb(136,192,208)'"
+      - key: "'highlight-colors-set'"
+        value: true
+      - key: "'highlight-foreground-color'"
+        value: "'rgb(46,52,64)'"
+      - key: "'login-shell'"
+        value: true
+      - key: "'nord-gnome-terminal-version'"
+        value: "'0.1.0'"
+      - key: "'palette'"
+        value: ['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']
+      - key: "'preserve-working-directory'"
+        value: "'safe'"
+      - key: "'text-blink-mode'"
+        value: "'focused'"
+      - key: "'use-custom-command'"
+        value: true
+      - key: "'use-system-font'"
+        value: false
+      - key: "'use-theme-background'"
+        value: false
+      - key: "'use-theme-colors'"
+        value: false
+      - key: "'use-theme-transparency'"
+        value: false
+      - key: "'use-transparent-background'"
+        value: false
+      - key: "'visible-name'"
+        value: "'Nord'"

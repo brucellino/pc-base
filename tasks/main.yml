@@ -35,3 +35,7 @@
 
 - name: Langs
   ansible.builtin.include_tasks: languages.yml
+
+- name: Dconf
+  ansible.builtin.include_tasks: dconf.yml
+  tags: ["dconf"]
