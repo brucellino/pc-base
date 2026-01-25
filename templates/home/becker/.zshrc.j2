@@ -77,7 +77,8 @@ SPACESHIP_PROMPT_ORDER=(
 source /etc/profile.d/antigen.zsh
 antigen init ~/.antigenrc
 source ~/.antigenrc
-autoload -U +X bashcompinit && bashcompinit
+autoload -U +X bashcompinit
+bashcompinit
 {#
 Requires Vault first
 complete -o nospace -C /usr/local/bin/vault vault

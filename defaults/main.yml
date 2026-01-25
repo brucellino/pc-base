@@ -58,6 +58,7 @@ base_packages:
     - ruby-asciidoctor-pdf
     - openmpi-bin
     - pandoc
+    - plocate
     - apt-utils
     - ca-certificates
     - gnupg
@@ -232,6 +233,8 @@ base_packages:
     - neofetch
     - openmpi-bin
     - pandoc
+    - plocate
+    - pipx
     - python3
     - python3-apt
     - python3-asn1crypto
@@ -316,7 +319,7 @@ base_packages:
     - qemu-system-arm
     - qemu-system-misc
     - qemu-user
-    - qemu-user-binfmt
+    # - qemu-user-binfmt
     - qemu-user-static
     - qemu-utils
     - readline-common
@@ -451,7 +454,7 @@ mono_packages:
 ## Slack
 ### See https://slack.com/intl/en-gb/downloads/linux
 ensure_slack: true
-slack_version: 4.35.131
+slack_version: 4.36.140
 # Only available for x86 architectures
 slack_pkg_url: "https://downloads.slack-edge.com/releases/linux/{{ slack_version }}/prod/x64/slack-desktop-{{ slack_version }}-amd64.deb"
 

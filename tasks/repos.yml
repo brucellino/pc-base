@@ -16,7 +16,7 @@
 - name: Repos | Spotify GPG Key
   ansible.builtin.apt_key:
     keyring: /etc/apt/trusted.gpg.d/spotify.gpg
-    url: https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg
+    url: https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg
     state: present
     validate_certs: true
 
