@@ -17,6 +17,14 @@ repos:
         - markdown
         - javascript
         - json
+      args:
+        - --exclude=node_modules
+        - --exclude=.venv
+        - --exclude=.git
+        - --exclude=.pre-commit-config.yaml
+        - --exclude=.github
+        - --exclude=.trunk
+        - --exclude=.vscode
       files: "defaults|handlers|tasks|vars"
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.5.0
