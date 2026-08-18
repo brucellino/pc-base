@@ -2,9 +2,10 @@
 _.python.venv = { path = ".venv", create = true }
 
 [tools]
-python = "3.13"
-uv = "latest"
+python = "3.14"
+uv = "0.12.5"
 node = "24"
+prek = "0.4.14"
 
 [tasks]
-install_deps = "uv pip install pre-commit ansible-core ansible-lint detect-secrets"
+install_deps = "uv pip install ansible-core ansible-lint detect-secrets"
