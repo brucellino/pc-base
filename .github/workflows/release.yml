@@ -13,9 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
+      - name: Dev Env
+        uses: jdx/mise-action@v5
+        with:
+          install: true
+      - name: Add dev deps
+        run: mise tasks run install_deps
       - name: Ansible Lint
         uses: ansible-actions/ansible-lint-action@v1.1.0
         with:
@@ -35,7 +41,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 'lts/*'
+          node-version: "lts/*"
       - name: add semantic release plugins
         run: |
           npm install -D '@semantic-release/changelog' \
