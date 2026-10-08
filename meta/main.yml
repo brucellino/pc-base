@@ -1,5 +1,5 @@
 galaxy_info:
-  role_name: template
+  role_name: pc_base
   namespace: brucellino
   author: Bruce Becker
   description: Ansible role template
