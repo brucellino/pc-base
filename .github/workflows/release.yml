@@ -20,12 +20,8 @@ jobs:
         uses: jdx/mise-action@v5
         with:
           install: true
-      - name: Add dev deps
-        run: mise tasks run install_deps
       - name: Ansible Lint
-        uses: ansible-actions/ansible-lint-action@v1.1.0
-        with:
-          target: test/playbook.yml
+        run: ansible-lint test/playbook.yml
         env:
           ANSIBLE_ROLES_PATH: "${PWD}/../"
   release:
@@ -41,11 +37,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: 'lts/*'
+          node-version: "lts/*"
       - name: add semantic release plugins
         run: |
           npm install -D '@semantic-release/changelog' \
-                          '@semantic-release/git'
+                          '@semantic-release/git' \
+                          '@semantic-release/github' \
+                          '@semantic-release/release-notes-generator'
 
       - name: Release
         env:
