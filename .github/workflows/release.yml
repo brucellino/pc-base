@@ -22,8 +22,6 @@ jobs:
           install: true
       - name: Ansible Lint
         run: ansible-lint test/playbook.yml
-        env:
-          ANSIBLE_ROLES_PATH: "${PWD}/../"
   release:
     name: Release
     runs-on: ubuntu-latest
