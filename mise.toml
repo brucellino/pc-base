@@ -4,6 +4,6 @@
 prek = "0.5.9"
 "pipx:ansible" = "14.5.0"
 "pipx:ansible-core" = "2.21.5"
-"pipx:ansible-lint" = "26.10.1"
+"pipx:ansible-lint" = "26.11.0"
 
 [tasks]
