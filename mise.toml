@@ -1,7 +1,10 @@
 [env]
+auto_install = true
 
 [tools]
-prek = "0.5.10"
+prek = "0.5.10"                 # Required for pre-commit hooks
+python = "3.14"                 # Required for Ansible
+pipx = "1.18.16"                # Required for dependencies
 "pipx:ansible" = "14.6.0"
 "pipx:ansible-core" = "2.22.0"
 "pipx:ansible-lint" = "26.11.0"
